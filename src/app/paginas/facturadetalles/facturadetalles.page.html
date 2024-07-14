@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/facturas"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      {{ id == 0 ? 'Nuevo' : 'Editar' }} Detalle de Factura
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="guardarDetalle()">
+    <ion-item>
+      <ion-label position="floating">Producto</ion-label>
+      <ion-select
+        [(ngModel)]="detalle.id_producto"
+        name="Producto"
+        interface="popover"
+        (ionChange)="actualizarPrecioUnitario()"
+      >
+        <ion-select-option
+          *ngFor="let producto of productos"
+          [value]="producto.id"
+        >
+          {{ producto.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="detalle.cantidad"
+        name="Cantidad"
+        (ionChange)="calcularSubtotal()"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio Unitario</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="detalle.precio_unitario"
+        name="PrecioUnitario"
+        readonly
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Subtotal</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="detalle.subtotal"
+        name="Subtotal"
+        readonly
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Guardar</ion-button>
+    <ion-button expand="full" color="danger" (click)="cancelar()"
+      >Cancelar</ion-button
+    >
+  </form>
+</ion-content>

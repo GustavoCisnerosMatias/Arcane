@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary"
+      >{{ id == 0 ? 'Nuevo' : 'Editar' }} Producto</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarCambios()">
+        <ion-icon name="save"></ion-icon> Grabar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="guardarCambios()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="objProducto.nombre"
+        name="Nombre"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="objProducto.descripcion"
+        name="Descripcion"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="objProducto.precio"
+        name="Precio"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Imagen URL</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="objProducto.img"
+        name="Img"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="backToProductos()" color="danger">
+      <ion-icon name="arrow-back"></ion-icon> Cancelar
+    </ion-button>
+  </form>
+</ion-content>

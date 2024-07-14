@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary"
+      >{{ id == 0 ? 'Nueva' : 'Editar' }} Factura</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarCambios()">
+        <ion-icon name="save"></ion-icon> Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="guardarCambios()">
+    <ion-item>
+      <ion-label position="floating">Nombre del Cliente</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="objFactura.nombreCliente"
+        name="nombreCliente"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mesa</ion-label>
+      <ion-select [(ngModel)]="objFactura.id_mesa" name="idMesa">
+        <ion-select-option *ngFor="let mesa of mesas" [value]="mesa.id">
+          {{ mesa.numero_mesa }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Total</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="objFactura.total"
+        name="total"
+        readonly
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="objFactura.estado" name="estado">
+        <ion-select-option value="1">Activa</ion-select-option>
+        <ion-select-option value="0">Desactivada</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" (click)="backToFacturas()" color="danger">
+      <ion-icon name="arrow-back"></ion-icon> Cancelar
+    </ion-button>
+  </form>
+</ion-content>
