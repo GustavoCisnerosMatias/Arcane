@@ -1,0 +1,186 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Arcane</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleDiv()">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="margin: 1%">
+  <div *ngIf="showDiv">
+    <div *ngIf="admin === 3" class="login">
+      <h2>Inicia sesión</h2>
+      <form (submit)="cargarUsuarios()">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input
+              type="text"
+              [(ngModel)]="user"
+              name="usuario"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="pass"
+              name="password"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" (click)="cargarUsuarios()">
+            Iniciar sesión
+          </ion-button>
+        </ion-list>
+      </form>
+    </div>
+
+    <div *ngIf="admin === 1" class="menu">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card (click)="servG.irA('/productos')">
+              <ion-card-content>
+                <ion-icon name="beer-outline" slot="end"></ion-icon>
+              </ion-card-content>
+              <ion-card-title>Productos</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card (click)="servG.irA('/mesas')">
+              <ion-card-content>
+                <ion-icon name="documents-outline"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Mesas</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card (click)="servG.irA('/facturas')">
+              <ion-card-content>
+                <ion-icon name="document-text-outline"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Facturas Activas</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card (click)="servG.irA('/historialfacturas')">
+              <ion-card-content>
+                <ion-icon name="documents-outline"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Todas Las facturas</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="colorboton1" (click)="servG.irA('/usuarios')">
+              <ion-card-content>
+                <ion-icon name="person"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Usuarios</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card
+              class="colorboton1"
+              (click)="servG.irA('/pedidosactivos')"
+            >
+              <ion-card-content>
+                <ion-icon name="person"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Pedidos activos</ion-card-title>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="admin === 0" class="menu">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card (click)="servG.irA('/facturas')">
+              <ion-card-content>
+                <ion-icon name="document-text-outline"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Facturas Activas</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card (click)="servG.irA('/historialfacturas')">
+              <ion-card-content>
+                <ion-icon name="documents-outline"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Todas Las facturas</ion-card-title>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div *ngIf="admin === 2" class="menu">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card (click)="servG.irA('/pedidosactivos')">
+              <ion-card-content>
+                <ion-icon name="calculator"> </ion-icon>
+              </ion-card-content>
+              <ion-card-title>Pedidos Activos</ion-card-title>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div *ngIf="!showDiv">
+    <div class="segmnet-content" *ngIf="codigoqr.length ===0">
+      <div class="img">
+        <img
+          src="//img.freepik.com/vector-premium/linda-ilustracion-codigo-qr-montando-nube-flotante_152558-71480.jpg"
+        />
+      </div>
+      <h6>Scanea el codigo QR de la mesa</h6>
+      <div class="botonScan">
+        <ion-col size="6">
+          <ion-button
+            class="botonScan"
+            expand="block"
+            (click)="scan()"
+            [disabled]="!isSupported"
+          >
+            Scanear
+            <ion-icon slot="end" name="scan-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </div>
+    </div>
+    <div *ngIf="codigoqr.length >0" class="login">
+      <h2>¿A que nombre esta la cuenta?</h2>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+          <ion-label position="floating">Nombre de la cuenta</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="nombreCliente"
+            name="nombreCliente"
+          ></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" (click)="ConsultarCuenta()">
+          Comienza a Ordenar
+        </ion-button>
+        <ion-button expand="block" (click)="limpiarScan()">
+          Volver a Escanear
+        </ion-button>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+<div class="cerrar-sesion" *ngIf="admin !== 3">
+  <ion-button expand="full" color="danger" (click)="cerrarSesion()">
+    Cerrar sesión
+  </ion-button>
+</div>

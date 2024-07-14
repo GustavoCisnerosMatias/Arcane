@@ -1,0 +1,106 @@
+.login {
+  border: 2px solid #00bdff;
+  justify-content: center;
+  align-items: center;
+  margin: 45px;
+  margin-top: 150px;
+}
+ion-title {
+  color: #00bdff;
+  text-align: center;
+}
+.login h2 {
+  color: #00bdff;
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login ion-list {
+  color: #00bdff;
+  margin: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.login ion-button {
+  color: #ffffff;
+  background-color: #00bdff;
+  margin: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+//menu
+.menu ion-card {
+  border: 2px solid #00bdff;
+  min-height: 145px;
+}
+.menu ion-card-title {
+  text-align: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.menu ion-icon {
+  font-size: 24px;
+  text-align: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.menu ion-col {
+  font-size: 24px;
+  text-align: center;
+  justify-content: center;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-placeholder {
+  width: 60px;
+}
+
+.qr-wrapper {
+  width: 230px;
+  min-height: 230px;
+  background-color: #3880ff;
+}
+
+#qrImage {
+  padding: 20px-0;
+}
+
+.img {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.img img {
+  max-width: 80%;
+  border: 2px solid #00bdff;
+  display: block;
+  margin: 0 auto; /* Centra horizontalmente */
+}
+
+.segmnet-content {
+  margin: 15px;
+  text-align: center;
+}
+
+.botonScan {
+  --background: #00bdff;
+  --color: #fff;
+  --ion-color-base: #00bdff;
+  --ion-color-base-rgb: 0, 189, 255;
+  --ion-color-contrast: #fff;
+}
+
+.botonScan ion-icon {
+  color: #fff;
+}
